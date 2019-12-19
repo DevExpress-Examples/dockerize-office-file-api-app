@@ -49,16 +49,17 @@ namespace DocumentConversionWebApi.Controllers {
         }
 
         Stream ConvertWordDocument(Stream inputStream) {
-            RichEditDocumentServer server = new RichEditDocumentServer();
+            using (RichEditDocumentServer server = new RichEditDocumentServer()) {
             server.LoadDocument(inputStream);
             MemoryStream resultStream = new MemoryStream();
             server.Options.Export.Html.EmbedImages = true;
             server.SaveDocument(resultStream, DevExpress.XtraRichEdit.DocumentFormat.Html);
             resultStream.Seek(0, SeekOrigin.Begin);
             return resultStream;
+            }
         }
         Stream ConvertSpreadsheetDocument(Stream inputStream) {
-            Workbook workbook = new Workbook();
+            using (Workbook workbook = new Workbook()) {
             workbook.LoadDocument(inputStream);
             MemoryStream resultStream = new MemoryStream();
             HtmlDocumentExporterOptions options = new HtmlDocumentExporterOptions();
@@ -67,6 +68,7 @@ namespace DocumentConversionWebApi.Controllers {
             workbook.ExportToHtml(resultStream, options);
             resultStream.Seek(0, SeekOrigin.Begin);
             return resultStream;
+            }
         }
     }
 }
