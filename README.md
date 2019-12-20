@@ -8,7 +8,7 @@
 
 # How to Dockerize an Office File API .NET Core Application
 
-This example shows how to create an ASP.NET Core Web API application that uses [Office File API](http://docs.devexpress.com/OfficeFileAPI/14911/office-file-api?p=netstandard) to convert a document into HTML on a server. The project contains a [Dockerfile](./CS/DocumentConversionWebApi/Dockerfile) that specifies how to build the application in a Docker container.
+This example shows how to create an ASP.NET Core Web API application that uses [Office File API](http://docs.devexpress.com/OfficeFileAPI/14911/office-file-api?p=netstandard) to convert a document to HTML on the server. The project contains a [Dockerfile](./CS/DocumentConversionWebApi/Dockerfile) that specifies how to build the application in a Docker container.
 
 ## Build the Docker Image
 
@@ -21,4 +21,4 @@ This example shows how to create an ASP.NET Core Web API application that uses [
   docker run -d -p 8080:80 documentconversionwebapi
   ```
 
-Use [Postman](https://www.getpostman.com/downloads/) to test the application.
+Use [Postman](https://www.getpostman.com/downloads/) to test the application. See the [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dockerize-an-office-file-api-app?p=netstandard) help topic for details.
