@@ -26,4 +26,4 @@ This example shows how to create an ASP.NET Core Web API application that uses [
   docker run -d -p 8080:80 documentconversionwebapi
   ```
 
-Use [Postman](https://www.getpostman.com/downloads/) to test the application. See the [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dockerize-an-office-file-api-app?p=netstandard) help topic for details.
+Use [Postman](https://www.getpostman.com/downloads/) to test the application. See the following help topic for details: [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dotnet-core-support/dockerize-an-office-file-api-app?v=21.1).
