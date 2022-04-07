@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.181
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentConversionWebApi", "DocumentConversionWebApi\DocumentConversionWebApi.csproj", "{473A4795-5521-4B79-B168-660404500B9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentConversionWebApi", "DocumentConversionWebApi\DocumentConversionWebApi.csproj", "{9777E2C7-83C2-47BE-AD8A-554100DC8E4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{473A4795-5521-4B79-B168-660404500B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{473A4795-5521-4B79-B168-660404500B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{473A4795-5521-4B79-B168-660404500B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{473A4795-5521-4B79-B168-660404500B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9777E2C7-83C2-47BE-AD8A-554100DC8E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9777E2C7-83C2-47BE-AD8A-554100DC8E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9777E2C7-83C2-47BE-AD8A-554100DC8E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9777E2C7-83C2-47BE-AD8A-554100DC8E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {836F817A-E279-4495-B805-43D9215704D8}
+		SolutionGuid = {A3B25954-F6CF-4CB7-8165-6BA033D3699F}
 	EndGlobalSection
 EndGlobal

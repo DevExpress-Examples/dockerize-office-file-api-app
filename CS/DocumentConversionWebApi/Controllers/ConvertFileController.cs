@@ -1,8 +1,4 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using DevExpress.Spreadsheet;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraSpreadsheet.Export;
@@ -11,6 +7,10 @@ namespace DocumentConversionWebApi.Controllers {
     [Route("[controller]")]
     [ApiController]
     public class ConvertFileController : ControllerBase {
+        [HttpGet]
+        public ActionResult Index() {
+            return Content("Index");
+        }
         [HttpPost]
         public async Task<IActionResult> PostConvertFile(IFormFile file) {
             if (file != null) {
@@ -40,8 +40,7 @@ namespace DocumentConversionWebApi.Controllers {
                                 return new FileStreamResult(ConvertSpreadsheetDocument(stream), "text/html");
                         }
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     return StatusCode(500, e.Message + Environment.NewLine + e.StackTrace);
                 }
             }
@@ -49,25 +48,25 @@ namespace DocumentConversionWebApi.Controllers {
         }
 
         Stream ConvertWordDocument(Stream inputStream) {
-            using (RichEditDocumentServer server = new RichEditDocumentServer()) {
-            server.LoadDocument(inputStream);
-            MemoryStream resultStream = new MemoryStream();
-            server.Options.Export.Html.EmbedImages = true;
-            server.SaveDocument(resultStream, DevExpress.XtraRichEdit.DocumentFormat.Html);
-            resultStream.Seek(0, SeekOrigin.Begin);
-            return resultStream;
+            using (var wordProcessor = new RichEditDocumentServer()) {
+                wordProcessor.LoadDocument(inputStream);
+                var resultStream = new MemoryStream();
+                wordProcessor.Options.Export.Html.EmbedImages = true;
+                wordProcessor.SaveDocument(resultStream, DevExpress.XtraRichEdit.DocumentFormat.Html);
+                resultStream.Seek(0, SeekOrigin.Begin);
+                return resultStream;
             }
         }
         Stream ConvertSpreadsheetDocument(Stream inputStream) {
-            using (Workbook workbook = new Workbook()) {
-            workbook.LoadDocument(inputStream);
-            MemoryStream resultStream = new MemoryStream();
-            HtmlDocumentExporterOptions options = new HtmlDocumentExporterOptions();
-            options.EmbedImages = true;
-            options.AnchorImagesToPage = true;
-            workbook.ExportToHtml(resultStream, options);
-            resultStream.Seek(0, SeekOrigin.Begin);
-            return resultStream;
+            using (var workbook = new Workbook()) {
+                workbook.LoadDocument(inputStream);
+                var resultStream = new MemoryStream();
+                var options = new HtmlDocumentExporterOptions();
+                options.EmbedImages = true;
+                options.AnchorImagesToPage = true;
+                workbook.ExportToHtml(resultStream, options);
+                resultStream.Seek(0, SeekOrigin.Begin);
+                return resultStream;
             }
         }
     }
