@@ -1,0 +1,49 @@
+# Build runtime image
+FROM opensuse/leap AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
+RUN zypper -n install wget libicu && \
+    wget https://packages.microsoft.com/keys/microsoft.asc
+RUN rpm --import microsoft.asc
+
+RUN wget https://packages.microsoft.com/config/opensuse/15/prod.repo && \
+    mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo && \
+    chown root:root /etc/zypp/repos.d/microsoft-prod.repo
+RUN zypper -n install aspnetcore-runtime-7.0
+
+# Install dependencies
+RUN zypper -n install glibc-devel fontconfig
+
+# Install fonts
+RUN zypper -n install fetchmsttfonts
+
+FROM opensuse/leap AS build
+RUN zypper -n install wget libicu && \
+    wget https://packages.microsoft.com/keys/microsoft.asc
+RUN rpm --import microsoft.asc
+
+RUN wget https://packages.microsoft.com/config/opensuse/15/prod.repo && \
+    mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo && \
+    chown root:root /etc/zypp/repos.d/microsoft-prod.repo
+RUN zypper -n install dotnet-sdk-7.0
+
+# Copy project files and build the application
+COPY . ./
+
+# Specify your DevExpress NuGet Feed URL as the package source
+RUN dotnet nuget add source https://nuget.devexpress.com/{your-feed-authorization-key}/api
+
+# Publish a release
+RUN dotnet publish "DocumentConversionWebApi.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:80
+
+# Define the entry point for the application
+ENTRYPOINT ["dotnet", "DocumentConversionWebApi.dll"]

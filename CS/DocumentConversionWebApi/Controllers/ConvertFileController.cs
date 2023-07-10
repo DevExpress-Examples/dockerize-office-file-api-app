@@ -7,10 +7,6 @@ namespace DocumentConversionWebApi.Controllers {
     [Route("[controller]")]
     [ApiController]
     public class ConvertFileController : ControllerBase {
-        [HttpGet]
-        public ActionResult Index() {
-            return Content("Index");
-        }
         [HttpPost]
         public async Task<IActionResult> PostConvertFile(IFormFile file) {
             if (file != null) {

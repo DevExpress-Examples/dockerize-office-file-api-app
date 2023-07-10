@@ -20,8 +20,14 @@ Use the following commands to build and run the docker image:
 
 Use the [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) VS Code extension to test the application. See the following help topic for details: [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dotnet-core-support/dockerize-an-office-file-api-app).
 
+## Docker Files
+
+* [Dockerfile](./CS/DocumentConversionWebApi/Dockerfile)
+* [Dockerfile.Alpine](./CS/DocumentConversionWebApi/Dockerfile.Alpine)
+* [Dockerfile.Ubuntu](./CS/DocumentConversionWebApi/Dockerfile.Ubuntu)
+* [Dockerfile.AmazonLinux](./CS/DocumentConversionWebApi/Dockerfile.AmazonLinux)
+* [Dockerfile.OpenSuse](./CS/DocumentConversionWebApi/Dockerfile.OpenSuse)
+
 ## Files to Look At
 
 * [ConvertFileController.cs](./CS/DocumentConversionWebApi/Controllers/ConvertFileController.cs)
-
-* [Dockerfile](./CS/DocumentConversionWebApi/Dockerfile)
