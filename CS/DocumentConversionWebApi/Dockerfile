@@ -5,8 +5,8 @@ EXPOSE 80
 EXPOSE 443
 
 # Install the latest version of font libraries
-RUN apt update
-RUN apt install -y libc6 libicu-dev libfontconfig1
+RUN apt update &&\
+         apt install -y libc6 libicu-dev libfontconfig1
 
 # (Optional step) Install the ttf-mscorefonts-installer package
 # to use Microsoft TrueType core fonts in the application
@@ -17,11 +17,10 @@ RUN apt install -y ttf-mscorefonts-installer
 FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build
 WORKDIR /src
 
-# Copy project files and build the application
-COPY . ./
-
 # Specify your DevExpress NuGet Feed URL as the package source
 RUN dotnet nuget add source https://nuget.devexpress.com/{your-feed-authorization-key}/api
+# Copy the project file
+COPY ./DocumentConversionWebApi.csproj ./
 
 # Restore as distinct layers
 RUN dotnet restore
