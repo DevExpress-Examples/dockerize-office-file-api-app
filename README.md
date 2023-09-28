@@ -18,8 +18,7 @@ Use the following commands to build and run the docker image:
   docker run -d -p 8080:80 documentconversionwebapi
   ```
 
-Use the [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) VS Code extension to test the application. See the following help topic for details: [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dotnet-core-support/dockerize-an-office-file-api-app).
-
+Use the [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) VS Code extension to test the application.
 ## Docker Files
 
 * [Dockerfile](./CS/DocumentConversionWebApi/Dockerfile)
@@ -31,3 +30,8 @@ Use the [Thunder Client](https://marketplace.visualstudio.com/items?itemName=ran
 ## Files to Look At
 
 * [ConvertFileController.cs](./CS/DocumentConversionWebApi/Controllers/ConvertFileController.cs)
+
+## Documentation
+
+* [Dockerize an Office File API Application](https://docs.devexpress.com/OfficeFileAPI/401528/dotnet-core-support/dockerize-an-office-file-api-app).
+
