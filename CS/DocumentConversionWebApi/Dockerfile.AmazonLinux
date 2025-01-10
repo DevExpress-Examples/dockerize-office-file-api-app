@@ -5,7 +5,7 @@ EXPOSE 80
 EXPOSE 443
 
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
-RUN yum install -y aspnetcore-runtime-7.0
+RUN yum install -y aspnetcore-runtime-8.0
 
 # Install dependencies
 RUN yum install -y glibc-devel libicu fontconfig
@@ -14,13 +14,13 @@ FROM amazonlinux AS build
 WORKDIR /src
 
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
-RUN yum install -y dotnet-sdk-7.0
+RUN yum install -y dotnet-sdk-8.0
 
 # Copy project files and build the application
 COPY . ./
 
 # Specify your DevExpress NuGet Feed URL as the package source
-RUN dotnet nuget add source https://nuget.devexpress.com/{your-feed-authorization-key}/api
+RUN --mount=type=secret,id=dxnuget dotnet nuget add source $(cat /run/secrets/dxnuget) -n devexpress-nuget
 
 # Publish a release
 RUN dotnet publish "DocumentConversionWebApi.csproj" -c Release -o /app/publish
